@@ -82,7 +82,7 @@ ExcludeFile=_*;*.log;*.nfo
 IncludeFile=Better.Call.Saul.*;The.Walking.Dead.*;House.of.Cards.*;Gotham.*;Ray.Donovan.*;True.Detective.*;State.of.Affairs.*;Banshee.*
 ```
 
-See. [documentation de ini](http://www.cyberkiko.com/Docs/FTPSync29/INIFile.htm)
+See. [ini documentation](http://www.cyberkiko.com/Docs/FTPSync29/INIFile.htm)
 
 ##Me.WCFTPSyncWrapper parameters:
 
@@ -102,6 +102,17 @@ The first 4 are command line parameters for FTPSync.
 See. [documentation paramètres](http://www.cyberkiko.com/Docs/FTPSync29/CmdLine.htm?MenuState=XXAAAAAAAAAAAAAAAAAAAAVFAAAAUA)
 Last 5 must be adapted to your environment.
 _DownloadedListFileLog.txt_ lists the updated series.
+
+The solution provides:
+
+- A command line version **CFTPSyncWrapper.exe** FTPSync Wrapper.exe
+- A version WinForm **WFTPSyncWrapper.exe** WFTPSyncWrapper.exe
+
+For this first version 1.0.0.0, the WinForm project only displays the parameters and can execute FTPSync.
+
+Instead, use the command line version with "Task Scheduler" to start the process in "Quiet".
+
+Both versions have identical parameters.
 
 _Google translation_
 

@@ -104,6 +104,16 @@ Cf. [documentation paramètres](http://www.cyberkiko.com/Docs/FTPSync29/CmdLine.
 Les 5 derniers doivent être adaptés en fonction de votre environnement.
 _DownloadedListFileLog.txt_ contient la liste des séries mises à jour.
 
+La solution dispose:
+
+- d'une version en ligne de commande **CFTPSyncWrapper.exe**
+- d'une version WinForm **WFTPSyncWrapper.exe**
+
+Pour cette première version 1.0.0.0, le projet WinForm se contente d'afficher les paramètres et permet d'exécuter FTPSync.
+
+On utilisera plutôt la version ligne de commande avec "Task scheduler" pour déclencher le processus en mode "Quiet".
+
+Les deux versions disposent de paramètres identiques.
 
 >Copyright (c) Jose ALVAREZ. All rights reserved.
 >Licensed under the MIT license. See LICENSE.MD file in the solution root for full license information.
