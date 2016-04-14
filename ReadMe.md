@@ -1,4 +1,4 @@
-﻿![ME Logo](Medias/favicon.ico)  __Me.WCFTPSyncWrapper solution__
+﻿<img alt="Me Logo" src="Medias/favicon.ico" width="32">  __Me.WCFTPSyncWrapper solution__
 
 The objective of this solution is to automate the synchronization between a propagation case (seedbox) located in a hosting and your
 home NAS to your TV sets. This assumes that you have already set up on your web host automation repatriation of your cult series.

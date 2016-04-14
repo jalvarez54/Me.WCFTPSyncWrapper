@@ -18,7 +18,7 @@
 #define OutPutDir "Setup"
 
 
-#define Mode "Staging"
+#define Mode "Release"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.

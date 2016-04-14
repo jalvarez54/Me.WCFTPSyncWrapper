@@ -1,4 +1,4 @@
-﻿![ME Logo](Medias/favicon.ico)  __Me.WCFTPSyncWrapper solution__
+﻿<img alt="Me Logo" src="Medias/favicon.ico" width="32">  __Me.WCFTPSyncWrapper solution__
 
 L'objectif de cette solution est d'automatiser la synchronisation entre un boitier de propagation (seedbox) localisé
 chez un hébergeur et votre NAS domestique de vos séries TV.
