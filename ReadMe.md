@@ -105,8 +105,8 @@ _DownloadedListFileLog.txt_ lists the updated series.
 
 The solution provides:
 
-- A command line version **CFTPSyncWrapper.exe** FTPSync Wrapper.exe
-- A version WinForm **WFTPSyncWrapper.exe** WFTPSyncWrapper.exe
+- A command line version **CFTPSyncWrapper.exe**
+- A version WinForm **WFTPSyncWrapper.exe**
 
 For this first version 1.0.0.0, the WinForm project only displays the parameters and can execute FTPSync.
 
