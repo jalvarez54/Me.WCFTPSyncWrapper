@@ -1,25 +1,23 @@
 ﻿![ME Logo](Medias/favicon.ico)  __Me.WCFTPSyncWrapper solution__
 
-L'objectif de cette solution est d'automatiser la synchronisation entre un boitier de propagation (seedbox) localisé
-chez un hébergeur et votre NAS domestique de vos séries TV.
-Cela suppose que vous ayez déja mis en place chez votre hébergeur une automatisation du rapatriement de vos séries cultes.
-Le cas échéant vous pouvez vous référer à ce [lien](http://www.crazyws.fr/internet/alternatives-megaupload-ou-vpn-seedbox-newsgroup-17QG4.html).
-Des solutions existent déja [sous linux](http://www.crazyws.fr/dev/systeme/synchroniser-votre-seedbox-avec-votre-nas-ou-votre-ordinateur-6NGGE.html),
-celle que je vous propose utilise l'environnement Windows.
+The objective of this solution is to automate the synchronization between a propagation case (seedbox) located in a hosting and your
+home NAS to your TV sets. This assumes that you have already set up on your web host automation repatriation of your cult series.
+If necessary you can refer to this [link](http://www.crazyws.fr/internet/alternatives-megaupload-ou-vpn-seedbox-newsgroup-17QG4.html).
+Solutions already exist [under linux](http://www.crazyws.fr/dev/systeme/synchroniser-votre-seedbox-avec-votre-nas-ou-votre-ordinateur-6NGGE.html),
+that I propose using the Windows environment.
 
-Cette solution repose donc sur l'outil de synchronisation de [CuberKiko Tools](http://www.cyberkiko.com/page/ftpsync/) "FTPSync" que vous pouvez télécharger
-[ici](http://cdn.cyberkiko.com/Download/Tools/FTPSync.zip), avec sa [documentation en ligne](http://cyberkiko.com/Docs/FTPSync29/). Elle peut être considérée
-comme un Helper ou un Wrapper de __FTPSync__ , permettant de faciliter le paramètrage de l'objectif final qui est de récupérer vos séries sur la seedbox et de les
-ranger correctement dans votre NAS domestique.
+This solution is based on the synchronization tool [CuberKiko Tools](http://www.cyberkiko.com/page/ftpsync/) "FTPSync" which you can download
+[here](http://cdn.cyberkiko.com/Download/Tools/FTPSync.zip), with its [online documentation](http://cyberkiko.com/Docs/FTPSync29/).
+It can be seen as a Helper or Wrapper __FTPSync__ , to facilitate the parameterization of the ultimate goal is to recover your series on the 
+seedbox and store properly in your home NAS.
 
-Le mieux est de vous expliquer l'architecture que j'ai mis en place à mon domicile.
+It is best to explain the architecture that I set up in my home.
 
-Je dispose dans la pièce qui me sert de bureau d'un NAS sous Windows 10 connecté à Internet et dans mon salon d'un boîtier "Gigabyte GB-BXI3-5010 Barebone Noir"
-aussi sous Windows 10, connectés en Ethernet 1Gbs.
-La solution _Me.WCFTPSyncWrapper_ est installée sur le lecteur N: du NAS qui est partagé.
-Le boîtier Gigabyte exécute qu'en à lui Kodi (ex XBMC) et utilise le partage du NAS installé sur un lecteur N: (lettre de lecteur non obligatoirement identique, mais pratique).
+I have in the room that office I use a NAS running Windows 10 with Internet access and in my living room with a housing "Gigabyte GB-BXI3-5010 Barebone Black" 
+also in Windows 10, connected Ethernet 1Gbs. The Me.WCFTPSyncWrapper solution is installed on drive N: NAS is shared. The Gigabyte housing that runs to him Kodi 
+(formerly XBMC) and uses sharing NAS installed on an N: drive (drive letter not necessarily identical but practice).
 
-####Structure des répertoires sur le NAS et principaux fichiers:
+####Directory structure on the NAS and key files:
 ```
 N:
 |
@@ -54,14 +52,15 @@ N:
 |
 |
 ```
-Il est important que le nom des répertoires correspondent au début du nom des fichiers ex: fichier Better.Call.Saul.S01E01.VOSTFR.HDTV.XviD-ATeam.avi
-répertoire Better.Call.Saul, pour le classement automatisé. En effet, un nouveau fichier est placé temporairement dans le répertoire _TempDownload_
-avant d'être déplacé dans le sous-réperoire _Videos/Series/Nom-Serie_ qui lui correspond en se basant sur le début du nom de fichier.
+It is important that the folder names correspond to the beginning of file names eg Better.Call.Saul.S01E01.VOSTFR.HDTV.XviD-ATeam.avi Better.Call.Saul 
+file directory for automated classification. Indeed, a new file is temporarily placed in the directory TempDownload before being moved in the sub-directory
+Videos/Series/SerieName corresponding to it based on the beginning of the file name.
 
-##Paramètres de FTPSync:
+##FTPSync parameters:
 
-Ils sont stockés dans un fichier ini, dont le nom est passé en paramètre à l'exécutable (ex: seedbox.ini).
-Les principaux paramètres qui resteront fixes sont les suivants:
+They are stored in an ini file, whose name is passed as a parameter to the executable (eg seedbox.ini).
+
+The main parameters that will remain fixed are:
 ```
 [Source]
 Server=YOUR_SEEDBOX_SERVER_IP
@@ -70,12 +69,12 @@ User=YOUR_SEEDBOX_SERVER_USERNAME
 Pass=YOUR_SEEDBOX_SERVER_PASSWORD
 Dir=YOUR_SEEDBOX_SERVER_PATH
 ```
-et
+and
 ```
 [Destination]
 Dir=N:\Videos\TempDownload\
 ```
-Les autres paramètres variables sont:
+The other variable parameters are:
 ```
 [Source]
 ExcludeDir=_*;alaakaazaam;degling;dollar;flo;lardon;nunur;plop;throna
@@ -83,9 +82,9 @@ ExcludeFile=_*;*.log;*.nfo
 IncludeFile=Better.Call.Saul.*;The.Walking.Dead.*;House.of.Cards.*;Gotham.*;Ray.Donovan.*;True.Detective.*;State.of.Affairs.*;Banshee.*
 ```
 
-Cf. [documentation de ini](http://www.cyberkiko.com/Docs/FTPSync29/INIFile.htm)
+See. [documentation de ini](http://www.cyberkiko.com/Docs/FTPSync29/INIFile.htm)
 
-##Paramètres de Me.WCFTPSyncWrapper:
+##Me.WCFTPSyncWrapper parameters:
 
 ```
 <add key="quiet" value="true"/>
@@ -99,11 +98,12 @@ Cf. [documentation de ini](http://www.cyberkiko.com/Docs/FTPSync29/INIFile.htm)
 <add key="duplicatedPath" value="N:\Videos\_Duplicated"/>
 ```
 
-Les 4 premiers, sont des paramètres ligne de commande pour FTPSync.
-Cf. [documentation paramètres](http://www.cyberkiko.com/Docs/FTPSync29/CmdLine.htm?MenuState=XXAAAAAAAAAAAAAAAAAAAAVFAAAAUA)
-Les 5 derniers doivent être adaptés en fonction de votre environnement.
-_DownloadedListFileLog.txt_ contient la liste des séries mises à jour.
+The first 4 are command line parameters for FTPSync.
+See. [documentation paramètres](http://www.cyberkiko.com/Docs/FTPSync29/CmdLine.htm?MenuState=XXAAAAAAAAAAAAAAAAAAAAVFAAAAUA)
+Last 5 must be adapted to your environment.
+_DownloadedListFileLog.txt_ lists the updated series.
 
+_Google translation_
 
 >Copyright (c) Jose ALVAREZ. All rights reserved.
 >Licensed under the MIT license. See LICENSE.MD file in the solution root for full license information.
