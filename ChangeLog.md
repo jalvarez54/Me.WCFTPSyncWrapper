@@ -1,0 +1,4 @@
+# Me.WCFTPSyncWrapper solution changelog
+
+
+

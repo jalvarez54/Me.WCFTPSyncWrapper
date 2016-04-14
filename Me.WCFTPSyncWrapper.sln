@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.WFTPSyncWrapper", "Me.WFTPSyncWrapper\Me.WFTPSyncWrapper.csproj", "{75C33F86-4C41-49A2-ABD9-99D3938AB506}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.CFTPSyncWrapper", "Me.CFTPSyncWrapper\Me.CFTPSyncWrapper.csproj", "{205C9591-B464-41B0-B5A1-2BAC2CBC123A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.WCFTPSyncWrapper", "Me.WCFTPSyncWrapper\Me.WCFTPSyncWrapper.csproj", "{2E95151A-6ED9-40EC-8A52-8365D4C7B06B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{52F83246-D662-4F7F-9FA9-374F00151DD8}"
+	ProjectSection(SolutionItems) = preProject
+		ChangeLog.md = ChangeLog.md
+		ChangeLogForDev.md = ChangeLogForDev.md
+		LICENSE.MD = LICENSE.MD
+		ReadMe.md = ReadMe.md
+		dist\seedbox_dist.ini = dist\seedbox_dist.ini
+		setup\setup.iss = setup\setup.iss
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Me.Common", "Me.Common\Me.Common.csproj", "{801ED574-A1AD-41F8-BBDD-DA0A73966D30}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75C33F86-4C41-49A2-ABD9-99D3938AB506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75C33F86-4C41-49A2-ABD9-99D3938AB506}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75C33F86-4C41-49A2-ABD9-99D3938AB506}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75C33F86-4C41-49A2-ABD9-99D3938AB506}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75C33F86-4C41-49A2-ABD9-99D3938AB506}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{75C33F86-4C41-49A2-ABD9-99D3938AB506}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{205C9591-B464-41B0-B5A1-2BAC2CBC123A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205C9591-B464-41B0-B5A1-2BAC2CBC123A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205C9591-B464-41B0-B5A1-2BAC2CBC123A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205C9591-B464-41B0-B5A1-2BAC2CBC123A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205C9591-B464-41B0-B5A1-2BAC2CBC123A}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{205C9591-B464-41B0-B5A1-2BAC2CBC123A}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{2E95151A-6ED9-40EC-8A52-8365D4C7B06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E95151A-6ED9-40EC-8A52-8365D4C7B06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E95151A-6ED9-40EC-8A52-8365D4C7B06B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E95151A-6ED9-40EC-8A52-8365D4C7B06B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E95151A-6ED9-40EC-8A52-8365D4C7B06B}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{2E95151A-6ED9-40EC-8A52-8365D4C7B06B}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{801ED574-A1AD-41F8-BBDD-DA0A73966D30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{801ED574-A1AD-41F8-BBDD-DA0A73966D30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{801ED574-A1AD-41F8-BBDD-DA0A73966D30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{801ED574-A1AD-41F8-BBDD-DA0A73966D30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{801ED574-A1AD-41F8-BBDD-DA0A73966D30}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{801ED574-A1AD-41F8-BBDD-DA0A73966D30}.Staging|Any CPU.Build.0 = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
