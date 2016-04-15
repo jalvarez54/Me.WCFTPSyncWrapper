@@ -17,7 +17,7 @@ I have in the room that office I use a NAS running Windows 10 with Internet acce
 also in Windows 10, connected Ethernet 1Gbs. The Me.WCFTPSyncWrapper solution is installed on drive N: NAS is shared. The Gigabyte housing that runs to him Kodi 
 (formerly XBMC) and uses sharing NAS installed on an N: drive (drive letter not necessarily identical but practice).
 
-####Directory structure on the NAS and key files:
+#### Directory structure on the NAS and key files:
 ```
 N:
 |
@@ -56,7 +56,7 @@ It is important that the folder names correspond to the beginning of file names 
 file directory for automated classification. Indeed, a new file is temporarily placed in the directory TempDownload before being moved in the sub-directory
 Videos/Series/SerieName corresponding to it based on the beginning of the file name.
 
-##FTPSync parameters:
+## FTPSync parameters:
 
 They are stored in an ini file, whose name is passed as a parameter to the executable (eg seedbox.ini).
 
@@ -84,7 +84,7 @@ IncludeFile=Better.Call.Saul.*;The.Walking.Dead.*;House.of.Cards.*;Gotham.*;Ray.
 
 See. [ini documentation](http://www.cyberkiko.com/Docs/FTPSync29/INIFile.htm)
 
-##Me.WCFTPSyncWrapper parameters:
+## Me.WCFTPSyncWrapper parameters:
 
 ```
 <add key="quiet" value="true"/>
@@ -113,6 +113,61 @@ For this first version 1.0.0.0, the WinForm project only displays the parameters
 Instead, use the command line version with "Task Scheduler" to start the process in "Quiet".
 
 Both versions have identical parameters.
+
+## Installation InnoSetup (MeFtpSyncWrapperSetup-Release-1.0.0.0.exe)
+
+The installer downloads [FTPSync.zip](http://cdn.cyberkiko.com/Download/Tools/FTPSync.zip) and uncompress
+_FTPSync_ in the directory that also included a configuration file (seedbox.ini) you need to fit your
+configuration.
+
+By default the installation is in the directory "C:\Me\MeFtpSyncWrapper".
+After installation, you must also parameterize the configuration files "CFTPSyncWrapper.exe.config" and "WFTPSyncWrapper.exe.config".
+
+## Developers
+
+- Open the solution
+- Right-click the solution and select "Restore NuGet packages"
+- In "Solution Items", open the file ** and ** seedbox.ini enter the parameters according to your configuration.
+- Execute the PowerShell script ** ** InitForDevs.ps1.
+
+This script will:
+
+    - Create the directory structure in .. \ bin Debug, Release and Staging,
+    - Download and unzip FTPSync.zip FTPSync in a directory for each directory above,
+    - Copy dist\seedbox.ini in each FTPSync directories of each directory above
+    - Create logs folder in each each directory above
+
+The final structure is:
+```
+.
+|
+|--Me.WCFTPSyncWrapper-master 
+    |--FTPSync
+    |--bin
+            |--Debug
+                |FTPSync
+                    |seedbox.ini
+                    |.......
+            |--Release
+                |FTPSync
+                    |seedbox.ini
+                    |.......
+            |--Staging
+                |FTPSync
+                    |seedbox.ini
+                    |.......
+            |--Setup
+    |--Me.WCFTPSyncWrapper-master
+        |--Me.CFTPSyncWrapper
+        |--Me.Common
+        |--Me.WCFTPSyncWrapper
+        |--Me.WFTPSyncWrapper
+        |--Medias
+        |--packages
+        |--setup
+        |............
+        |Me.WCFTPSyncWrapper.sln
+```
 
 _Google translation_
 

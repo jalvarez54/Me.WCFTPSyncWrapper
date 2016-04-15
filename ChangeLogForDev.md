@@ -44,6 +44,19 @@ Sections model:
     *Compile the solution and then setup.iss*
 ============================================================================================================================
 
+##### [10001] CFTPSyncWrapper and WFTPSyncWrapper parameters 
+[10001-001]  ADD: in CFTPSyncWrapper same command line parameters than FTPSync
+    command line parameters will superseed app.settings parameters         
+==> open
+[10001-002]  ADD: in WFTPSyncWrapper same parameters than CFTPSyncWrapper
+    those parameters will superseed app.settings parameters                      
+==> open
+[10001-003]  ADD: /INIT parameter in app.settings
+    for CFTPSyncWrapper and WFTPSyncWrapper        
+==> open
+##### ==> open
+
+
 ##### [10000] Version 1.0.0.0
  
     2016-04-14 Commit on GitHub. 

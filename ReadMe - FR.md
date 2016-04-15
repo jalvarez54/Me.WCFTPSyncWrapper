@@ -19,7 +19,7 @@ aussi sous Windows 10, connectés en Ethernet 1Gbs.
 La solution _Me.WCFTPSyncWrapper_ est installée sur le lecteur N: du NAS qui est partagé.
 Le boîtier Gigabyte exécute qu'en à lui Kodi (ex XBMC) et utilise le partage du NAS installé sur un lecteur N: (lettre de lecteur non obligatoirement identique, mais pratique).
 
-####Structure des répertoires sur le NAS et principaux fichiers:
+#### Structure des répertoires sur le NAS et principaux fichiers:
 ```
 N:
 |
@@ -58,7 +58,7 @@ Il est important que le nom des répertoires correspondent au début du nom des 
 répertoire Better.Call.Saul, pour le classement automatisé. En effet, un nouveau fichier est placé temporairement dans le répertoire _TempDownload_
 avant d'être déplacé dans le sous-réperoire _Videos/Series/Nom-Serie_ qui lui correspond en se basant sur le début du nom de fichier.
 
-##Paramètres de FTPSync:
+## Paramètres de FTPSync:
 
 Ils sont stockés dans un fichier ini, dont le nom est passé en paramètre à l'exécutable (ex: seedbox.ini).
 Les principaux paramètres qui resteront fixes sont les suivants:
@@ -85,7 +85,7 @@ IncludeFile=Better.Call.Saul.*;The.Walking.Dead.*;House.of.Cards.*;Gotham.*;Ray.
 
 Cf. [documentation de ini](http://www.cyberkiko.com/Docs/FTPSync29/INIFile.htm)
 
-##Paramètres de Me.WCFTPSyncWrapper:
+## Paramètres de Me.WCFTPSyncWrapper:
 
 ```
 <add key="quiet" value="true"/>
@@ -114,6 +114,62 @@ Pour cette première version 1.0.0.0, le projet WinForm se contente d'afficher l
 On utilisera plutôt la version ligne de commande avec "Task scheduler" pour déclencher le processus en mode "Quiet".
 
 Les deux versions disposent de paramètres identiques.
+
+## Installation Innosetup (MeFtpSyncWrapperSetup-Release-1.0.0.0.exe)
+
+Le programme d'installation télécharge [FTPSync.zip](http://cdn.cyberkiko.com/Download/Tools/FTPSync.zip) et le décompressse
+dans le répertoire _FTPSync_ qui inclus également un fichier de configuration (seedbox.ini) que vous devez adapter à votre
+configuration.
+
+Par défaut l'installation s'effectue dans le répertoire "C:\Me\MeFtpSyncWrapper".
+Aprés installation, vous devez aussi paramètrer les fichiers de configuration "CFTPSyncWrapper.exe.config" et "WFTPSyncWrapper.exe.config".
+
+
+## Développeurs
+
+- Ouvrir la solution
+- Click droit sur la solution et sélectionner: "Restaurer les packages NuGet"
+- Dans "Solution Items", ouvrir le fichier **seedbox.ini** et renseigner les paramètres selon votre configuration.
+- Exécuter le script PowerShell **InitForDevs.ps1**.
+
+Ce script va:
+
+    - créer la structure des répertoires dans ..\bin Debug,Release et Staging,
+    - télécharger et décompresser FTPSync.zip dans un répertoire FTPSync de chaque répertoire ci-dessus,
+    - copier dist\seedbox.ini dans chacun des répertoires FTPSync de chaque répertoire ci-dessus
+    - créer un répertoire logs dans chacun des répertoires ci-dessus
+
+La structure finale est la suivante:
+```
+.
+|
+|--Me.WCFTPSyncWrapper-master 
+    |--FTPSync
+    |--bin
+            |--Debug
+                |FTPSync
+                    |seedbox.ini
+                    |.......
+            |--Release
+                |FTPSync
+                    |seedbox.ini
+                    |.......
+            |--Staging
+                |FTPSync
+                    |seedbox.ini
+                    |.......
+            |--Setup
+    |--Me.WCFTPSyncWrapper-master
+        |--Me.CFTPSyncWrapper
+        |--Me.Common
+        |--Me.WCFTPSyncWrapper
+        |--Me.WFTPSyncWrapper
+        |--Medias
+        |--packages
+        |--setup
+        |............
+        |Me.WCFTPSyncWrapper.sln
+```
 
 >Copyright (c) Jose ALVAREZ. All rights reserved.
 >Licensed under the MIT license. See LICENSE.MD file in the solution root for full license information.

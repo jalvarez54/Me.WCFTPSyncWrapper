@@ -13,10 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		ChangeLog.md = ChangeLog.md
 		ChangeLogForDev.md = ChangeLogForDev.md
+		InitForDevs.ps1 = InitForDevs.ps1
 		LICENSE.MD = LICENSE.MD
 		ReadMe - FR.md = ReadMe - FR.md
 		ReadMe.md = ReadMe.md
-		dist\seedbox_dist.ini = dist\seedbox_dist.ini
+		dist\seedbox.ini = dist\seedbox.ini
 		setup\setup.iss = setup\setup.iss
 		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection

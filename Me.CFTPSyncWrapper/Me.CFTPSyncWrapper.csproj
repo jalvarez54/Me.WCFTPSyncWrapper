@@ -114,12 +114,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SlowCheetahTargets)" Condition="Exists('$(SlowCheetahTargets)')" Label="SlowCheetah" />
   <PropertyGroup>
-    <PreBuildEvent>if not exist "$(TargetDir)FTPSync" mkdir "$(TargetDir)FTPSync"
-copy Y:\MesProjets\Me.FTPSyncHelper\FTPSync\*  $(TargetDir)\FTPSync\</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(TargetDir)logs" mkdir "$(TargetDir)logs"
-if not exist "$(TargetDir)Series" mkdir "$(TargetDir)Series"
+    <PostBuildEvent>if not exist "$(TargetDir)Series" mkdir "$(TargetDir)Series"
 if not exist "$(TargetDir)TempDownload" mkdir "$(TargetDir)TempDownload"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

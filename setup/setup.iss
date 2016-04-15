@@ -75,7 +75,7 @@ Source: "..\ChangeLog.md"; DestDir: "{app}"
 Source: "..\LICENSE.MD"; DestDir: "{app}"
 Source: "..\Medias\favicon.ico"; DestDir: "{app}\{#Media}"
 Source: "..\Medias\favicon.ico"; DestDir: "{app}"
-Source: "..\dist\seedbox_dist.ini"; DestDir: "{app}\{#FTPSync}"; Flags: onlyifdoesntexist uninsneveruninstall confirmoverwrite;
+Source: "..\dist\seedbox.ini"; DestDir: "{app}\{#FTPSync}"; Flags: onlyifdoesntexist uninsneveruninstall confirmoverwrite;
 
 [Run]
 Filename: "http://www.cyberkiko.com/page/ftpsync/"; Flags: shellexec runasoriginaluser postinstall; Description: "Open the FTPSync url."
