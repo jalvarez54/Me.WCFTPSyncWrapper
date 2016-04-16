@@ -1,7 +1,7 @@
 ﻿<img alt="Me Logo" src="Medias/favicon.ico" width="32">  __Me.WCFTPSyncWrapper solution__
 
-L'objectif de cette solution est d'automatiser la synchronisation entre un boitier de propagation (seedbox) localisé
-chez un hébergeur et votre NAS domestique de vos séries TV.
+L'objectif de cette solution est d'automatiser la synchronisation de vos séries TV entre un boitier de propagation (seedbox) localisé
+chez un hébergeur et votre NAS domestique.
 Cela suppose que vous ayez déja mis en place chez votre hébergeur une automatisation du rapatriement de vos séries cultes.
 Le cas échéant vous pouvez vous référer à ce [lien](http://www.crazyws.fr/internet/alternatives-megaupload-ou-vpn-seedbox-newsgroup-17QG4.html).
 Des solutions existent déja [sous linux](http://www.crazyws.fr/dev/systeme/synchroniser-votre-seedbox-avec-votre-nas-ou-votre-ordinateur-6NGGE.html),

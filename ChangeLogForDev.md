@@ -61,8 +61,8 @@ Sections model:
  
     2016-04-16 Commit on GitHub. 
 
-##### [10001] ADD: /INIT option
-    Avoiding initial transfer of all files: (http://www.cyberkiko.com/post/ftpsync-avoiding-initial-transfer-of-all-files/)
+##### [10001] ADD: /INIT option & ADD: Push-Location $PSScriptRoot in InitForDevs.ps1
+    [Avoiding initial transfer of all files](http://www.cyberkiko.com/post/ftpsync-avoiding-initial-transfer-of-all-files/)
 
 ##### [10000] Version 1.0.0.0.alpha
  

@@ -1,7 +1,7 @@
 ﻿<img alt="Me Logo" src="Medias/favicon.ico" width="32">  __Me.WCFTPSyncWrapper solution__
 
-The objective of this solution is to automate the synchronization between a propagation case (seedbox) located in a hosting and your
-home NAS to your TV sets. This assumes that you have already set up on your web host automation repatriation of your cult series.
+The objective of this solution is to automate the synchronization of your TV series spread between a box (seedbox) located
+in a hosting and your home NAS. This assumes that you have already set up on your web host automation repatriation of your cult series.
 If necessary you can refer to this [link](http://www.crazyws.fr/internet/alternatives-megaupload-ou-vpn-seedbox-newsgroup-17QG4.html).
 Solutions already exist [under linux](http://www.crazyws.fr/dev/systeme/synchroniser-votre-seedbox-avec-votre-nas-ou-votre-ordinateur-6NGGE.html),
 that I propose using the Windows environment.
