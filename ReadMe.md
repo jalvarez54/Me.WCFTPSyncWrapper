@@ -134,8 +134,8 @@ NB: For a [first use](http://www.cyberkiko.com/post/ftpsync-avoiding-initial-tra
 
 This script will:
 
-    - Create the directory structure in .. \ bin Debug, Release and Staging,
-    - Download and unzip FTPSync.zip FTPSync in a directory for each directory above,
+    - Create the directory structure in ..\bin Debug, Release and Staging,
+    - Download and unzip FTPSync.zip in a FTPSync directory for each directory above,
     - Copy dist\seedbox.ini in each FTPSync directories of each directory above
     - Create logs folder in each each directory above
 

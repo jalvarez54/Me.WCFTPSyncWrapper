@@ -1,17 +1,16 @@
-﻿if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
-{   
-#"No Administrative rights, it will display a popup window asking user for Admin rights"
-
-$arguments = "& '" + $myinvocation.mycommand.definition + "'"
-Start-Process "$psHome\powershell.exe" -Verb runAs -ArgumentList $arguments
-
-break
-}
-#"After user clicked Yes on the popup, your file will be reopened with Admin rights"
+﻿#################################################################################
+# Create the directory structure in ..\bin Debug, Release and Staging,
+# Download and unzip FTPSync.zip in a FTPSync directory for each directory above,
+# Copy dist\seedbox.ini in each FTPSync directories of each directory above
+# Create logs folder in each each directory above
+####################################################################################################
 
 #
-#Create directories for developpers
+#Create directories for developers
 #
+
+# temporarily change to the correct folder
+Push-Location $PSScriptRoot
 
 $binPath = "..\bin"
 $FTPSyncPath = "..\FTPSync"
@@ -20,26 +19,26 @@ $ReleasePath = "..\bin\Release"
 $StagingPath = "..\bin\Staging"
 $SetupPath = "..\bin\Setup"
 
-New-Item "$PSScriptRoot\$binPath" -type directory -Force
-New-Item "$PSScriptRoot\$FTPSyncPath" -type directory -Force
+New-Item "$binPath" -type directory -Force 
+New-Item "$FTPSyncPath" -type directory -Force
 
-New-Item "$PSScriptRoot\$DebugPath" -type directory -Force
-New-Item "$PSScriptRoot\$ReleasePath" -type directory -Force
-New-Item "$PSScriptRoot\$StagingPath" -type directory -Force
-New-Item "$PSScriptRoot\$SetupPath" -type directory -Force
+New-Item "$DebugPath" -type directory -Force
+New-Item "$ReleasePath" -type directory -Force
+New-Item "$StagingPath" -type directory -Force
+New-Item "$SetupPath" -type directory -Force
 
-New-Item "$PSScriptRoot\$DebugPath\FTPSync" -type directory -Force
-New-Item "$PSScriptRoot\$ReleasePath\FTPSync" -type directory -Force
-New-Item "$PSScriptRoot\$StagingPath\FTPSync" -type directory -Force
-New-Item "$PSScriptRoot\$DebugPath\logs" -type directory -Force
-New-Item "$PSScriptRoot\$ReleasePath\logs" -type directory -Force
-New-Item "$PSScriptRoot\$StagingPath\logs" -type directory -Force
+New-Item "$DebugPath\FTPSync" -type directory -Force
+New-Item "$ReleasePath\FTPSync" -type directory -Force
+New-Item "$StagingPath\FTPSync" -type directory -Force
+New-Item "$DebugPath\logs" -type directory -Force
+New-Item "$ReleasePath\logs" -type directory -Force
+New-Item "$StagingPath\logs" -type directory -Force
 
 #
 # Download FTPSync.zip
 #
 $url = "http://cdn.cyberkiko.com/Download/Tools/FTPSync.zip"
-$output = "$PSScriptRoot\FTPSync.zip"
+$output = "FTPSync.zip"
 $start_time = Get-Date
 $object = New-Object System.Net.WebClient
 
@@ -60,7 +59,7 @@ Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
 #Unzip FTPSync.zip
 #
 $start_time = Get-Date
-$targetFolder = "$PSScriptRoot\$FTPSyncPath"
+$targetFolder = "$FTPSyncPath"
 
 if(Test-Path $targetFolder)
 {
@@ -81,12 +80,12 @@ catch
     break
 }
 
-$from = "$PSScriptRoot\$FTPSyncPath\*"
-$toDebug = "$PSScriptRoot\$DebugPath\FTPSync\"
-$toRelease = "$PSScriptRoot\$ReleasePath\FTPSync\"
-$toStaging = "$PSScriptRoot\$StagingPath\FTPSync\"
+$from = "$FTPSyncPath\*"
+$toDebug = "$DebugPath\FTPSync\"
+$toRelease = "$ReleasePath\FTPSync\"
+$toStaging = "$StagingPath\FTPSync\"
 
-Copy-Item $from $toDebug -Recurse -Force
+Copy-Item $from $toDebug -Recurse -Force 
 Copy-Item $from $toRelease -Recurse -Force
 Copy-Item $from $toStaging -Recurse -Force
 
@@ -96,9 +95,15 @@ Write-Output "Time taken: $((Get-Date).Subtract($start_time).Seconds) second(s)"
 #Copy seedbox.ini
 #
 Write-Output  "Copying seedbox.ini"
-$from = "$PSScriptRoot\dist\seedbox.ini"
+$from = "dist\seedbox.ini"
 Copy-Item $from $toDebug -force
 Copy-Item $from $toRelease -force
 Copy-Item $from $toStaging -force
 
+# now back to previous directory
+Pop-Location
+
 Write-Output  "Script terminated"
+
+Write-Host "Press any key to continue ..."
+$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
