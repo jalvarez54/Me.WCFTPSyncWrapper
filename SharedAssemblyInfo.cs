@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
+[assembly: AssemblyConfiguration("alpha")]
 [assembly: AssemblyDescription("The objective of this solution is to automate the synchronization between a propagation case (seedbox) located in a hosting and your home NAS to your TV sets.")]
 [assembly: AssemblyCompany("Me")]
 [assembly: AssemblyProduct("WCFTPSyncWrapper")]
@@ -19,4 +20,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyInformationalVersion("1.0.0.0.alpha")]
+[assembly: AssemblyInformationalVersion("1.0.0.1.alpha")]

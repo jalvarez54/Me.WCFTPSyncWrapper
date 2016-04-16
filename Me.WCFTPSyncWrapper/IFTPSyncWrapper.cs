@@ -12,6 +12,7 @@ namespace Me.WCFTPSyncWrapper
         void LaunchFTPSyncProcess();
         bool Quiet { get; set; }
         bool Full { get; set; }
+        bool Init { get; set; }
         bool Differential { get; set; }
         bool Incremental { get; set; }
         string SeriesPath { get; set; }

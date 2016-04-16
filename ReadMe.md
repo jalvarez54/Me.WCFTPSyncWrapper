@@ -123,12 +123,14 @@ configuration.
 By default the installation is in the directory "C:\Me\MeFtpSyncWrapper".
 After installation, you must also parameterize the configuration files "CFTPSyncWrapper.exe.config" and "WFTPSyncWrapper.exe.config".
 
+NB: For a [first use](http://www.cyberkiko.com/post/ftpsync-avoiding-initial-transfer-of-all-files/)
+
 ## Developers
 
 - Open the solution
 - Right-click the solution and select "Restore NuGet packages"
-- In "Solution Items", open the file ** and ** seedbox.ini enter the parameters according to your configuration.
-- Execute the PowerShell script ** ** InitForDevs.ps1.
+- In "Solution Items", open the file **seedbox.ini** and enter the parameters according to your configuration.
+- Execute the PowerShell script **InitForDevs.ps1** .
 
 This script will:
 

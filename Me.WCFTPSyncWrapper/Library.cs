@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,6 @@ namespace Me.WCFTPSyncWrapper
 {
     /// <summary>
     /// http://www.cyberkiko.com/page/ftpsync/
-    /// http://cdn.cyberkiko.com/Download/Tools/FTPSync.zip
     /// </summary>
     public class Library : IFTPSyncWrapper
     {
@@ -19,7 +19,7 @@ namespace Me.WCFTPSyncWrapper
         {
             try
             {
-                Init();
+                Initialize();
 
             }
             catch (Exception)
@@ -38,6 +38,7 @@ namespace Me.WCFTPSyncWrapper
         private string _downloadedListFileLog;
         private bool _quiet = false;
         private bool _full = false;
+        private bool _init = false;
         private bool _differential = false;
         private bool _incremental = false;
         private List<string> _seriesName = new List<string>();
@@ -72,6 +73,19 @@ namespace Me.WCFTPSyncWrapper
             set
             {
                 _full = value;
+            }
+        }
+
+        public bool Init
+        {
+            get
+            {
+                return _init;
+            }
+
+            set
+            {
+                _init = value;
             }
         }
 
@@ -155,13 +169,14 @@ namespace Me.WCFTPSyncWrapper
 
         #endregion
 
-        private void Init()
+        private void Initialize()
         {
 
             try
             {
                 this._quiet = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["quiet"]);
                 this._full = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["full"]);
+                this._init = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["init"]);
                 this._differential = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["differential"]);
                 this._incremental = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["incremental"]);
                 this._seriesPath = System.Configuration.ConfigurationManager.AppSettings["seriesPath"];
@@ -329,32 +344,34 @@ namespace Me.WCFTPSyncWrapper
                     ftpsyncProcess.StartInfo.RedirectStandardError = true;
                     ftpsyncProcess.StartInfo.StandardErrorEncoding = Encoding.UTF8;
                     ftpsyncProcess.ErrorDataReceived += new DataReceivedEventHandler(OnProcessErrorOutput);
-
-                    if (this._full)
-                    {
-                        ftpsyncProcess.StartInfo.Arguments = Path.GetFileNameWithoutExtension(this.GetIniFileName()) + " /FULL";
-                    }
-                    else
-                    {
-                        if (this._incremental)
+                        if (this._full)
                         {
-                            ftpsyncProcess.StartInfo.Arguments = Path.GetFileNameWithoutExtension(this.GetIniFileName()) + " /INCREMENTAL ";
+                            ftpsyncProcess.StartInfo.Arguments = Path.GetFileNameWithoutExtension(this.GetIniFileName()) + " /FULL";
+                            // [10001] ADD: /INIT option
+                            if (this._init)
+                            {
+                                ftpsyncProcess.StartInfo.Arguments += " /INIT";
+                            }
                         }
                         else
                         {
-                            if (this._differential)
+                            if (this._incremental)
                             {
-                                ftpsyncProcess.StartInfo.Arguments = Path.GetFileNameWithoutExtension(this.GetIniFileName()) + " /DIFFERENTIAL";
+                                ftpsyncProcess.StartInfo.Arguments = Path.GetFileNameWithoutExtension(this.GetIniFileName()) + " /INCREMENTAL ";
+                            }
+                            else
+                            {
+                                if (this._differential)
+                                {
+                                    ftpsyncProcess.StartInfo.Arguments = Path.GetFileNameWithoutExtension(this.GetIniFileName()) + " /DIFFERENTIAL";
+                                }
                             }
                         }
-                    }
 
-                    if (this._quiet)
-                    {
-                        ftpsyncProcess.StartInfo.Arguments += " /QUIET";
-                    }
-
-
+                        if (this._quiet)
+                        {
+                            ftpsyncProcess.StartInfo.Arguments += " /QUIET";
+                        }
                     ftpsyncProcess.StartInfo.FileName = this.GetFTPSyncExePath();
                     ftpsyncProcess.StartInfo.RedirectStandardOutput = true;
                     ftpsyncProcess.StartInfo.StandardOutputEncoding = Encoding.UTF8;
@@ -398,6 +415,43 @@ namespace Me.WCFTPSyncWrapper
             {
 
                 throw;
+            }
+        }
+
+        /// <summary>
+        /// FTPSync async redirect errors handler
+        /// </summary>
+        /// <param name="process"></param>
+        /// <param name="errLine"></param>
+        private void OnProcessErrorOutput(Object process, DataReceivedEventArgs errLine)
+        {
+
+            Process theProcess = (Process)process;
+            string message = string.Empty;
+            if (theProcess != null)
+            {
+                switch (theProcess.ExitCode)
+                {
+                    case 0:
+                        message = Me.Common.Resources.FTPSyncError_0;
+                        break;
+                    case 1:
+                        message = Me.Common.Resources.FTPSyncError_1;
+                        break;
+                    case 2:
+                        message = Me.Common.Resources.FTPSyncError_2;
+                        break;
+                    case 3:
+                        message = Me.Common.Resources.FTPSyncError_3;
+                        break;
+                    case 4:
+                        message = Me.Common.Resources.FTPSyncError_4;
+                        break;
+                    default:
+                        message = Me.Common.Resources.FTPSyncError_Undefined;
+                        break;
+                }
+
             }
         }
 
@@ -462,37 +516,6 @@ namespace Me.WCFTPSyncWrapper
             }
         }
 
-        private void OnProcessErrorOutput(Object process, DataReceivedEventArgs errLine)
-        {
-
-            Process theProcess = (Process)process;
-            string message = string.Empty;
-            if (theProcess != null)
-            {
-                switch (theProcess.ExitCode)
-                {
-                    case 0:
-                        message = Me.Common.Resources.FTPSyncError_0;
-                        break;
-                    case 1:
-                        message = Me.Common.Resources.FTPSyncError_1;
-                        break;
-                    case 2:
-                        message = Me.Common.Resources.FTPSyncError_2;
-                        break;
-                    case 3:
-                        message = Me.Common.Resources.FTPSyncError_3;
-                        break;
-                    case 4:
-                        message = Me.Common.Resources.FTPSyncError_4;
-                        break;
-                    default:
-                        message = Me.Common.Resources.FTPSyncError_Undefined;
-                        break;
-                }
-
-            }
-        }
 
         private string GetIniFileName()
         {

@@ -50,7 +50,7 @@ namespace Me.CFTPSyncWrapper
             {
                 log.Fatal("", ex);
                 Program.EndApp(ex.HResult);
-                
+
             }
 
             try
@@ -65,7 +65,7 @@ namespace Me.CFTPSyncWrapper
 
             if (args.Length > 0)
             {
-                
+
                 if (options.FTPSync)
                 {
                     log.Debug("options.FTPSync");
@@ -96,7 +96,7 @@ namespace Me.CFTPSyncWrapper
                     // TODO: /FULL /INIT /INCREMENTAL /DIFFERENTIAL 
                     try
                     {
-                        ConsoleFTPSyncMainWorkFlow();
+                        ConsoleFTPSyncMainWorkFlow(args);
                         log.Info(Me.Common.Resources.Success);
                         Program.EndApp(0);
                     }
@@ -168,7 +168,7 @@ namespace Me.CFTPSyncWrapper
             return;
         }
 
-        private static void ConsoleFTPSyncMainWorkFlow()
+        private static void ConsoleFTPSyncMainWorkFlow(string[] args = null)
         {
             log.Info("");
 

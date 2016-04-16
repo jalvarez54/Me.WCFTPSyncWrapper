@@ -17,6 +17,22 @@ namespace Me.CFTPSyncWrapper
           HelpText = "MeFTPSyncHelper console mode.")]
         public bool Console { get; set; }
 
+        [Option('a', "full",
+          HelpText = "/FULL")]
+        public bool Full { get; set; }
+
+        [Option('i', "init",
+          HelpText = "/INIT")]
+        public bool Init { get; set; }
+
+        [Option('r', "incremental",
+          HelpText = "/INCREMENTAL")]
+        public bool Incremental { get; set; }
+
+        [Option('d', "differential",
+          HelpText = "/DIFFERENTIAL")]
+        public bool Differential { get; set; }
+
         [Option('g', "gui",
           HelpText = "MeFTPSyncHelper GUI mode.")]
         public bool GUI { get; set; }

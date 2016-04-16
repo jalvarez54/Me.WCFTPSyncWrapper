@@ -20,6 +20,7 @@
 
 * [CyberKiko Tools FTPSync](http://www.cyberkiko.com/page/ftpsync/)
 * [FTPSync download](http://cdn.cyberkiko.com/Download/Tools/FTPSync.zip)
+* [Synchronisation FTP grâce à FtpSync](https://mikaelkrief.wordpress.com/2011/11/04/c-synchronisation-ftp-grace-a-ftpsync/)
 * [Inno Setup to unzip a file](http://www.scriptkitties.com/innounzip/)
 * [Inno-Setup: Post Install open link: antivirus alert while opening a link](http://stackoverflow.com/questions/5375210/inno-setup-post-install-open-link-antivirus-alert-while-opening-a-link)
 * [innounp, the Inno Setup Unpacker](http://innounp.sourceforge.net/)
@@ -27,6 +28,18 @@
 * [Redirect console output to textbox](http://stackoverflow.com/questions/14802876/what-is-a-good-way-to-direct-console-output-to-text-box-in-windows-form)
 
 # TODO OPENED
+
+##### [xxxxx] CFTPSyncWrapper and WFTPSyncWrapper parameters 
+[xxxxx-001]  ADD: in CFTPSyncWrapper same command line parameters than FTPSync
+    command line parameters will superseed app.settings parameters         
+==> open
+[xxxxx-002]  ADD: in WFTPSyncWrapper same parameters than CFTPSyncWrapper
+    those parameters will superseed app.settings parameters                      
+==> open
+[xxxxx-003]  ADD: /INIT parameter in app.settings
+    for CFTPSyncWrapper and WFTPSyncWrapper        
+==> open
+##### ==> open
 
 ============================================================================================================================
 Sections model: 
@@ -44,20 +57,14 @@ Sections model:
     *Compile the solution and then setup.iss*
 ============================================================================================================================
 
-##### [10001] CFTPSyncWrapper and WFTPSyncWrapper parameters 
-[10001-001]  ADD: in CFTPSyncWrapper same command line parameters than FTPSync
-    command line parameters will superseed app.settings parameters         
-==> open
-[10001-002]  ADD: in WFTPSyncWrapper same parameters than CFTPSyncWrapper
-    those parameters will superseed app.settings parameters                      
-==> open
-[10001-003]  ADD: /INIT parameter in app.settings
-    for CFTPSyncWrapper and WFTPSyncWrapper        
-==> open
-##### ==> open
+##### [10002] Version 1.0.0.1.alpha
+ 
+    2016-04-16 Commit on GitHub. 
 
+##### [10001] ADD: /INIT option
+    Avoiding initial transfer of all files: (http://www.cyberkiko.com/post/ftpsync-avoiding-initial-transfer-of-all-files/)
 
-##### [10000] Version 1.0.0.0
+##### [10000] Version 1.0.0.0.alpha
  
     2016-04-14 Commit on GitHub. 
 

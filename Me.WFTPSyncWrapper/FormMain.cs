@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MadMilkman.Ini;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Me.WFTPSyncWrapper
 {
@@ -56,9 +57,9 @@ namespace Me.WFTPSyncWrapper
                 log.Info("");
 
                 List<string> settings = new List<string>();
-
                 settings.Add("/QUIET = " + this._ftpSyncWrapper.Quiet.ToString());
                 settings.Add("/FULL = " + this._ftpSyncWrapper.Full.ToString());
+                settings.Add("/INIT = " + this._ftpSyncWrapper.Init.ToString());
                 settings.Add("/DIFFERENTIAL = " + this._ftpSyncWrapper.Differential.ToString());
                 settings.Add("/INCREMENTAL = " + this._ftpSyncWrapper.Incremental.ToString());
                 settings.Add("SERIES PATH = " + this._ftpSyncWrapper.SeriesPath);
@@ -172,8 +173,6 @@ namespace Me.WFTPSyncWrapper
                 get { return System.Text.Encoding.UTF8; }
             }
         }
-
-
     }
 
 }

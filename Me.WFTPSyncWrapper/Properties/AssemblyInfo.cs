@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("Me.WFTPSyncWrapper")]
-[assembly: AssemblyConfiguration("")]
 
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 

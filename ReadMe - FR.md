@@ -124,6 +124,8 @@ configuration.
 Par défaut l'installation s'effectue dans le répertoire "C:\Me\MeFtpSyncWrapper".
 Aprés installation, vous devez aussi paramètrer les fichiers de configuration "CFTPSyncWrapper.exe.config" et "WFTPSyncWrapper.exe.config".
 
+NB: Lors d'une [première utilisation](http://www.cyberkiko.com/post/ftpsync-avoiding-initial-transfer-of-all-files/)
+
 
 ## Développeurs
 
