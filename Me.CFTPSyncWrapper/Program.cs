@@ -107,10 +107,10 @@ namespace Me.CFTPSyncWrapper
                 if (options.Console)
                 {
                     log.Debug("options.Console");
-                    // TODO: /FULL /INIT /INCREMENTAL /DIFFERENTIAL 
+
                     try
                     {
-                        ConsoleFTPSyncMainWorkFlow(args);
+                        ConsoleFTPSyncMainWorkFlow();
                         log.Info(Me.Common.Resources.Success);
                         Program.EndApp(0);
                     }
@@ -154,9 +154,28 @@ namespace Me.CFTPSyncWrapper
             }
             else
             {
-                // Default (without arguments)
-                Program.DisplayInMessageBox(string.Format(Me.Common.Resources.Usage, options.GetUsage()));
-                Program.EndApp(0);
+                // we use app.settings (without arguments) in console mode
+                log.Debug("options.Console");
+
+                try
+                {
+                    ConsoleFTPSyncMainWorkFlow();
+                    log.Info(Me.Common.Resources.Success);
+                    Program.EndApp(0);
+                }
+                catch (ApplicationException ex)
+                {
+                    Program.DisplayInMessageBox(ex.Message);
+                    log.Debug(ex.Message);
+                    log.Info(Me.Common.Resources.Success);
+                    Program.EndApp(0);
+                }
+                catch (Exception ex)
+                {
+                    Program.DisplayInMessageBox(ex.Message);
+                    log.Debug(ex.Message);
+                    Program.EndApp(0);
+                }
 
             }
         }
@@ -185,7 +204,7 @@ namespace Me.CFTPSyncWrapper
             return;
         }
 
-        private static void ConsoleFTPSyncMainWorkFlow(string[] args = null)
+        private static void ConsoleFTPSyncMainWorkFlow()
         {
             log.Info("");
 

@@ -49,6 +49,14 @@ Sections model:
     *Compile the solution and then setup.iss*
 ============================================================================================================================
 
+##### [10006] Version 1.1.0.1.alpha
+ 
+    2016-04-18 Commit on GitHub. 
+
+##### [10005] ISSUE: CFTPSyncWrapper parameters
+    Correct logical bug in command line arguments.
+    If  command line arguments = 0 we run for app.settings
+
 ##### [10004] Version 1.1.0.0.alpha
  
     2016-04-18 Commit on GitHub. 
@@ -60,7 +68,6 @@ Sections model:
 [10003-003]  ADD: in CFTPSyncWrapper and WFTPSyncWrapper same command line parameters than FTPSync
     those parameters will superseed app.settings parameters
         
-
 ##### [10002] Version 1.0.0.1.alpha
  
     2016-04-16 Commit on GitHub. 
