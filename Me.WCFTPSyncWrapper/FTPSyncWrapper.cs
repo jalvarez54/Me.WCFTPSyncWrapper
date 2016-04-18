@@ -6,19 +6,26 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Me.Common;
 
 namespace Me.WCFTPSyncWrapper
 {
     /// <summary>
     /// http://www.cyberkiko.com/page/ftpsync/
     /// </summary>
-    public class Library : IFTPSyncWrapper
+    public class FTPSyncWrapper : IFTPSyncWrapper
     {
+        private Options _options; // = new Options();
 
-        public Library()
+        /// <summary>
+        /// [10003-002]  ADD: object options = null parmeter in FTPSyncWrapper() constrcutor
+        /// </summary>
+        /// <param name="options"></param>
+        public FTPSyncWrapper(object options = null)
         {
             try
             {
+                _options = (Options)options;
                 Initialize();
 
             }
@@ -167,6 +174,19 @@ namespace Me.WCFTPSyncWrapper
             }
         }
 
+        public Options Options
+        {
+            get
+            {
+                return _options;
+            }
+
+            set
+            {
+                _options = value;
+            }
+        }
+
         #endregion
 
         private void Initialize()
@@ -174,11 +194,22 @@ namespace Me.WCFTPSyncWrapper
 
             try
             {
-                this._quiet = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["quiet"]);
-                this._full = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["full"]);
-                this._init = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["init"]);
-                this._differential = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["differential"]);
-                this._incremental = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["incremental"]);
+                if (_options != null)
+                {
+                    this._quiet = _options.Quiet;
+                    this._full = _options.Full;
+                    this._init = _options.Init;
+                    this._differential = _options.Differential;
+                    this._incremental = _options.Incremental;
+                }
+                else
+                {
+                    this._quiet = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["quiet"]);
+                    this._full = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["full"]);
+                    this._init = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["init"]);
+                    this._differential = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["differential"]);
+                    this._incremental = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["incremental"]);
+                }
                 this._seriesPath = System.Configuration.ConfigurationManager.AppSettings["seriesPath"];
                 this._downloadsPath = System.Configuration.ConfigurationManager.AppSettings["downloadsPath"];
                 this._downloadedListFileLog = System.Configuration.ConfigurationManager.AppSettings["downloadedListFileLog"];
@@ -539,7 +570,7 @@ namespace Me.WCFTPSyncWrapper
 
             try
             {
-                exePath = this.GetFTPSyncExeDirectory() + Path.DirectorySeparatorChar + Library.FTPSyncFileName;
+                exePath = this.GetFTPSyncExeDirectory() + Path.DirectorySeparatorChar + FTPSyncWrapper.FTPSyncFileName;
 
             }
             catch (Exception)
@@ -556,9 +587,9 @@ namespace Me.WCFTPSyncWrapper
             try
             {
                 //get the full location of the assembly with DaoTests in it
-                string fullPath = System.Reflection.Assembly.GetAssembly(typeof(Library)).Location;
+                string fullPath = System.Reflection.Assembly.GetAssembly(typeof(FTPSyncWrapper)).Location;
                 //get the folder that's in
-                exeFolder = Path.GetDirectoryName(fullPath) + Library.FTPSyncFolderName;
+                exeFolder = Path.GetDirectoryName(fullPath) + FTPSyncWrapper.FTPSyncFolderName;
 
             }
             catch (Exception)

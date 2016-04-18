@@ -1,12 +1,8 @@
-﻿using Me.WCFTPSyncWrapper;
+﻿using Me.Common;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Me.CFTPSyncWrapper
@@ -31,20 +27,38 @@ namespace Me.CFTPSyncWrapper
             // Catch all unhandled exceptions in all threads.
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            if (!CommandLine.Parser.Default.ParseArguments(args, options))
+            try
             {
-                Environment.Exit(CommandLine.Parser.DefaultExitCodeFail);
-            }
+                // [10003-003]  ADD: in CFTPSyncWrapper and WFTPSyncWrapper same command line parameters than FTPSync
+                if (args.Length != 0)
+                {
+                    if (!CommandLine.Parser.Default.ParseArguments(args, options))
+                    {
+                        Program.EndApp(CommandLine.Parser.DefaultExitCodeFail);
 
-            if (CommandLine.Parser.Default.ParseArguments(args, options))
+                    }
+                    else
+                    {
+                        // Values are available here
+                        Console.WriteLine("Version: {0}", options.Version);
+                    }
+                }
+                else
+                {
+                    // No parameters so FTPSyncWrapper will use app.settings parameters values
+                    options = null;
+                }
+            }
+            catch (Exception ex)
             {
-                // Values are available here
-                Console.WriteLine("Version: {0}", options.Version);
+                log.Fatal("", ex);
+                Program.EndApp(ex.HResult);
             }
 
             try
             {
-                _ftpSyncWrapper = new Me.WCFTPSyncWrapper.Factory().GetWCFTPSyncWrapper();
+                // Using dependency injection
+                _ftpSyncWrapper = new Me.WCFTPSyncWrapper.Factory().GetWCFTPSyncWrapper(options);
             }
             catch (Exception ex)
             {
@@ -121,7 +135,7 @@ namespace Me.CFTPSyncWrapper
                     log.Debug("options.GUI");
                     try
                     {
-                        WinFormMode(args);
+                        WinFormMode();
                         log.Info(Me.Common.Resources.Success);
                         Program.EndApp(0);
 
@@ -133,18 +147,21 @@ namespace Me.CFTPSyncWrapper
                         Program.EndApp(ex.HResult);
                     }
                 }
+                // we need one of the 3 options above
+                Program.DisplayInMessageBox(string.Format(Me.Common.Resources.Usage, options.GetUsage()));
+                Program.EndApp(0);
 
             }
             else
             {
                 // Default (without arguments)
-                log.InfoFormat(Me.Common.Resources.Usage, options.GetUsage());
-                return;
+                Program.DisplayInMessageBox(string.Format(Me.Common.Resources.Usage, options.GetUsage()));
+                Program.EndApp(0);
 
             }
         }
 
-        private static void WinFormMode(string[] args)
+        private static void WinFormMode()
         {
             log.Info("");
 

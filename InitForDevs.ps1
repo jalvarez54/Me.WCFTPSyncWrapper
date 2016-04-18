@@ -5,6 +5,7 @@
 # Download and unzip FTPSync.zip in a FTPSync directory for each directory above,
 # Copy dist\seedbox.ini in each FTPSync directories of each directory above
 # Create logs folder in each each directory above
+# JA
 ####################################################################################################
 
 #

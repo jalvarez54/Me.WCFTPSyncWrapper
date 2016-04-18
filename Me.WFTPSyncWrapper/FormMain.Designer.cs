@@ -36,6 +36,12 @@
             this.tabPageSeedboxIni = new System.Windows.Forms.TabPage();
             this.listBoxSeedBoxIni = new System.Windows.Forms.ListBox();
             this.tabPageFTPSyncHelper = new System.Windows.Forms.TabPage();
+            this.groupBoxFTPSyncOptions = new System.Windows.Forms.GroupBox();
+            this.radioButtonFull = new System.Windows.Forms.RadioButton();
+            this.checkBoxQuiet = new System.Windows.Forms.CheckBox();
+            this.radioButtonIncremental = new System.Windows.Forms.RadioButton();
+            this.checkBoxInit = new System.Windows.Forms.CheckBox();
+            this.radioButtonDifferential = new System.Windows.Forms.RadioButton();
             this.buttonRunFTPSync = new System.Windows.Forms.Button();
             this.textBoxLogs = new System.Windows.Forms.TextBox();
             this.listBoxSettings = new System.Windows.Forms.ListBox();
@@ -43,6 +49,7 @@
             this.tabPageNewSeries.SuspendLayout();
             this.tabPageSeedboxIni.SuspendLayout();
             this.tabPageFTPSyncHelper.SuspendLayout();
+            this.groupBoxFTPSyncOptions.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +99,7 @@
             // 
             // tabPageFTPSyncHelper
             // 
+            this.tabPageFTPSyncHelper.Controls.Add(this.groupBoxFTPSyncOptions);
             this.tabPageFTPSyncHelper.Controls.Add(this.buttonRunFTPSync);
             this.tabPageFTPSyncHelper.Controls.Add(this.textBoxLogs);
             this.tabPageFTPSyncHelper.Controls.Add(this.listBoxSettings);
@@ -103,11 +111,81 @@
             this.tabPageFTPSyncHelper.Text = "FTPSyncHelper";
             this.tabPageFTPSyncHelper.UseVisualStyleBackColor = true;
             // 
+            // groupBoxFTPSyncOptions
+            // 
+            this.groupBoxFTPSyncOptions.Controls.Add(this.radioButtonFull);
+            this.groupBoxFTPSyncOptions.Controls.Add(this.checkBoxQuiet);
+            this.groupBoxFTPSyncOptions.Controls.Add(this.radioButtonIncremental);
+            this.groupBoxFTPSyncOptions.Controls.Add(this.checkBoxInit);
+            this.groupBoxFTPSyncOptions.Controls.Add(this.radioButtonDifferential);
+            this.groupBoxFTPSyncOptions.Location = new System.Drawing.Point(8, 182);
+            this.groupBoxFTPSyncOptions.Name = "groupBoxFTPSyncOptions";
+            this.groupBoxFTPSyncOptions.Size = new System.Drawing.Size(540, 47);
+            this.groupBoxFTPSyncOptions.TabIndex = 9;
+            this.groupBoxFTPSyncOptions.TabStop = false;
+            this.groupBoxFTPSyncOptions.Text = "FTPSync options";
+            // 
+            // radioButtonFull
+            // 
+            this.radioButtonFull.AutoSize = true;
+            this.radioButtonFull.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonFull.Name = "radioButtonFull";
+            this.radioButtonFull.Size = new System.Drawing.Size(56, 17);
+            this.radioButtonFull.TabIndex = 5;
+            this.radioButtonFull.TabStop = true;
+            this.radioButtonFull.Text = "/FULL";
+            this.radioButtonFull.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxQuiet
+            // 
+            this.checkBoxQuiet.AutoSize = true;
+            this.checkBoxQuiet.Location = new System.Drawing.Point(470, 16);
+            this.checkBoxQuiet.Name = "checkBoxQuiet";
+            this.checkBoxQuiet.Size = new System.Drawing.Size(64, 17);
+            this.checkBoxQuiet.TabIndex = 8;
+            this.checkBoxQuiet.Text = "/QUIET";
+            this.checkBoxQuiet.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonIncremental
+            // 
+            this.radioButtonIncremental.AutoSize = true;
+            this.radioButtonIncremental.Location = new System.Drawing.Point(68, 19);
+            this.radioButtonIncremental.Name = "radioButtonIncremental";
+            this.radioButtonIncremental.Size = new System.Drawing.Size(107, 17);
+            this.radioButtonIncremental.TabIndex = 6;
+            this.radioButtonIncremental.TabStop = true;
+            this.radioButtonIncremental.Text = "/INCREMENTAL";
+            this.radioButtonIncremental.UseVisualStyleBackColor = true;
+            this.radioButtonIncremental.CheckedChanged += new System.EventHandler(this.radioButtonIncrementalDifferential_CheckedChanged);
+            // 
+            // checkBoxInit
+            // 
+            this.checkBoxInit.AutoSize = true;
+            this.checkBoxInit.Location = new System.Drawing.Point(412, 16);
+            this.checkBoxInit.Name = "checkBoxInit";
+            this.checkBoxInit.Size = new System.Drawing.Size(52, 17);
+            this.checkBoxInit.TabIndex = 4;
+            this.checkBoxInit.Text = "/INIT";
+            this.checkBoxInit.UseVisualStyleBackColor = true;
+            this.checkBoxInit.CheckedChanged += new System.EventHandler(this.checkBoxInit_CheckedChanged);
+            // 
+            // radioButtonDifferential
+            // 
+            this.radioButtonDifferential.AutoSize = true;
+            this.radioButtonDifferential.Location = new System.Drawing.Point(181, 19);
+            this.radioButtonDifferential.Name = "radioButtonDifferential";
+            this.radioButtonDifferential.Size = new System.Drawing.Size(106, 17);
+            this.radioButtonDifferential.TabIndex = 7;
+            this.radioButtonDifferential.TabStop = true;
+            this.radioButtonDifferential.Text = "/DIFFERENTIAL";
+            this.radioButtonDifferential.UseVisualStyleBackColor = true;
+            this.radioButtonDifferential.CheckedChanged += new System.EventHandler(this.radioButtonIncrementalDifferential_CheckedChanged);
+            // 
             // buttonRunFTPSync
             // 
-            this.buttonRunFTPSync.Location = new System.Drawing.Point(8, 182);
+            this.buttonRunFTPSync.Location = new System.Drawing.Point(554, 190);
             this.buttonRunFTPSync.Name = "buttonRunFTPSync";
-            this.buttonRunFTPSync.Size = new System.Drawing.Size(1022, 23);
+            this.buttonRunFTPSync.Size = new System.Drawing.Size(476, 39);
             this.buttonRunFTPSync.TabIndex = 3;
             this.buttonRunFTPSync.Text = "Run FTPSync";
             this.buttonRunFTPSync.UseVisualStyleBackColor = true;
@@ -117,11 +195,11 @@
             // 
             this.textBoxLogs.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBoxLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLogs.Location = new System.Drawing.Point(3, 211);
+            this.textBoxLogs.Location = new System.Drawing.Point(3, 235);
             this.textBoxLogs.Multiline = true;
             this.textBoxLogs.Name = "textBoxLogs";
             this.textBoxLogs.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLogs.Size = new System.Drawing.Size(1032, 468);
+            this.textBoxLogs.Size = new System.Drawing.Size(1032, 444);
             this.textBoxLogs.TabIndex = 0;
             // 
             // listBoxSettings
@@ -160,6 +238,8 @@
             this.tabPageSeedboxIni.ResumeLayout(false);
             this.tabPageFTPSyncHelper.ResumeLayout(false);
             this.tabPageFTPSyncHelper.PerformLayout();
+            this.groupBoxFTPSyncOptions.ResumeLayout(false);
+            this.groupBoxFTPSyncOptions.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -176,6 +256,12 @@
         private System.Windows.Forms.TextBox textBoxLogs;
         private System.Windows.Forms.ListBox listBoxSettings;
         private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.RadioButton radioButtonDifferential;
+        private System.Windows.Forms.RadioButton radioButtonIncremental;
+        private System.Windows.Forms.RadioButton radioButtonFull;
+        private System.Windows.Forms.CheckBox checkBoxInit;
+        private System.Windows.Forms.GroupBox groupBoxFTPSyncOptions;
+        private System.Windows.Forms.CheckBox checkBoxQuiet;
     }
 }
 

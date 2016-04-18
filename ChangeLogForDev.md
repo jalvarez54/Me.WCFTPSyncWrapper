@@ -29,17 +29,9 @@
 
 # TODO OPENED
 
-##### [xxxxx] CFTPSyncWrapper and WFTPSyncWrapper parameters 
-[xxxxx-001]  ADD: in CFTPSyncWrapper same command line parameters than FTPSync
-    command line parameters will superseed app.settings parameters         
-==> open
-[xxxxx-002]  ADD: in WFTPSyncWrapper same parameters than CFTPSyncWrapper
-    those parameters will superseed app.settings parameters                      
-==> open
-[xxxxx-003]  ADD: /INIT parameter in app.settings
-    for CFTPSyncWrapper and WFTPSyncWrapper        
-==> open
-##### ==> open
+
+##### [xxxxx] IMPLEMENT: MoveDuplicatedFiles()
+    ==> open
 
 ============================================================================================================================
 Sections model: 
@@ -56,6 +48,18 @@ Sections model:
     *Change projects assembly version number in AssemblyInfo.cs, setup.iss*
     *Compile the solution and then setup.iss*
 ============================================================================================================================
+
+##### [10004] Version 1.1.0.0.alpha
+ 
+    2016-04-18 Commit on GitHub. 
+
+##### [10003] CFTPSyncWrapper and WFTPSyncWrapper parameters
+[FTPSync parameters](http://www.cyberkiko.com/docs/FTPSync29/CmdLine.htm)
+[10003-001]  ADD: Options.cs in Me.Common
+[10003-002]  ADD: object options = null parmeter in FTPSyncWrapper constructor
+[10003-003]  ADD: in CFTPSyncWrapper and WFTPSyncWrapper same command line parameters than FTPSync
+    those parameters will superseed app.settings parameters
+        
 
 ##### [10002] Version 1.0.0.1.alpha
  

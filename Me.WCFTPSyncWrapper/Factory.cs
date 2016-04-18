@@ -8,9 +8,9 @@ namespace Me.WCFTPSyncWrapper
 {
     public class Factory
     {
-        public IFTPSyncWrapper GetWCFTPSyncWrapper()
+        public IFTPSyncWrapper GetWCFTPSyncWrapper(object options = null)
         {
-            return new WCFTPSyncWrapper.Library();
+            return new WCFTPSyncWrapper.FTPSyncWrapper(options);
         }
     }
 }

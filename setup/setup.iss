@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MeFtpSyncWrapper"
-#define MyAppVersion "1.0.0.1"
+#define MyAppVersion "1.1.0.0"
 #define MyAppPublisher "Me"
 #define MyAppURL "http://jowalva.ddns.net/"
 #define MyCustomer "Me"
@@ -18,6 +18,8 @@
 #define OutPutDir "Setup"
 
 
+;#define Mode "Debug"
+;#define Mode "Staging"
 #define Mode "Release"
 
 [Setup]

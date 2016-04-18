@@ -121,8 +121,9 @@ _FTPSync_ in the directory that also included a configuration file (seedbox.ini)
 configuration.
 
 By default the installation is in the directory "C:\Me\MeFtpSyncWrapper".
-After installation, you must also parameterize the configuration files "CFTPSyncWrapper.exe.config" and "WFTPSyncWrapper.exe.config".
-
+After installation, you must also parameterize the configuration files "CFTPSyncWrapper.exe.config" and "WFTPSyncWrapper.exe.config",
+and/or use command line for CFTPSyncWrapper or GUI parameters for WFTPSyncWrapper. Those last one superseed app.settings parameters.
+**Syntaxe**: CFTPSyncWrapper -c|-g|-f [-q] [-v] [-a -i] [-r] [-d] [-h]
 NB: For a [first use](http://www.cyberkiko.com/post/ftpsync-avoiding-initial-transfer-of-all-files/)
 
 ## Developers

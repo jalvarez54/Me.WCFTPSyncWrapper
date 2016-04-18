@@ -8,14 +8,18 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Me.CFTPSyncWrapper
+namespace Me.Common
 {
     // Define a class to receive parsed values
-    class Options
+    public class Options
     {
         [Option('c', "console",
           HelpText = "MeFTPSyncHelper console mode.")]
         public bool Console { get; set; }
+
+        [Option('q', "quiet",
+          HelpText = "/QUIET")]
+        public bool Quiet { get; set; }
 
         [Option('a', "full",
           HelpText = "/FULL")]
@@ -49,9 +53,8 @@ namespace Me.CFTPSyncWrapper
             {
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
-                string currentVersion = fvi.FileVersion;
+                string currentVersion = fvi.ProductVersion;
                 return currentVersion;
-
             }
         }
 
