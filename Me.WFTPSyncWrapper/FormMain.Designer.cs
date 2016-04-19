@@ -46,11 +46,15 @@
             this.textBoxLogs = new System.Windows.Forms.TextBox();
             this.listBoxSettings = new System.Windows.Forms.ListBox();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.groupBoxAppSettings = new System.Windows.Forms.GroupBox();
+            this.groupBoxLogs = new System.Windows.Forms.GroupBox();
             this.tabPageNewSeries.SuspendLayout();
             this.tabPageSeedboxIni.SuspendLayout();
             this.tabPageFTPSyncHelper.SuspendLayout();
             this.groupBoxFTPSyncOptions.SuspendLayout();
             this.tabControl.SuspendLayout();
+            this.groupBoxAppSettings.SuspendLayout();
+            this.groupBoxLogs.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon
@@ -99,10 +103,10 @@
             // 
             // tabPageFTPSyncHelper
             // 
+            this.tabPageFTPSyncHelper.Controls.Add(this.groupBoxLogs);
+            this.tabPageFTPSyncHelper.Controls.Add(this.groupBoxAppSettings);
             this.tabPageFTPSyncHelper.Controls.Add(this.groupBoxFTPSyncOptions);
             this.tabPageFTPSyncHelper.Controls.Add(this.buttonRunFTPSync);
-            this.tabPageFTPSyncHelper.Controls.Add(this.textBoxLogs);
-            this.tabPageFTPSyncHelper.Controls.Add(this.listBoxSettings);
             this.tabPageFTPSyncHelper.Location = new System.Drawing.Point(4, 22);
             this.tabPageFTPSyncHelper.Name = "tabPageFTPSyncHelper";
             this.tabPageFTPSyncHelper.Padding = new System.Windows.Forms.Padding(3);
@@ -118,7 +122,8 @@
             this.groupBoxFTPSyncOptions.Controls.Add(this.radioButtonIncremental);
             this.groupBoxFTPSyncOptions.Controls.Add(this.checkBoxInit);
             this.groupBoxFTPSyncOptions.Controls.Add(this.radioButtonDifferential);
-            this.groupBoxFTPSyncOptions.Location = new System.Drawing.Point(8, 182);
+            this.groupBoxFTPSyncOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxFTPSyncOptions.Location = new System.Drawing.Point(8, 251);
             this.groupBoxFTPSyncOptions.Name = "groupBoxFTPSyncOptions";
             this.groupBoxFTPSyncOptions.Size = new System.Drawing.Size(540, 47);
             this.groupBoxFTPSyncOptions.TabIndex = 9;
@@ -128,6 +133,7 @@
             // radioButtonFull
             // 
             this.radioButtonFull.AutoSize = true;
+            this.radioButtonFull.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonFull.Location = new System.Drawing.Point(6, 19);
             this.radioButtonFull.Name = "radioButtonFull";
             this.radioButtonFull.Size = new System.Drawing.Size(56, 17);
@@ -139,7 +145,8 @@
             // checkBoxQuiet
             // 
             this.checkBoxQuiet.AutoSize = true;
-            this.checkBoxQuiet.Location = new System.Drawing.Point(470, 16);
+            this.checkBoxQuiet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxQuiet.Location = new System.Drawing.Point(470, 20);
             this.checkBoxQuiet.Name = "checkBoxQuiet";
             this.checkBoxQuiet.Size = new System.Drawing.Size(64, 17);
             this.checkBoxQuiet.TabIndex = 8;
@@ -149,6 +156,7 @@
             // radioButtonIncremental
             // 
             this.radioButtonIncremental.AutoSize = true;
+            this.radioButtonIncremental.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonIncremental.Location = new System.Drawing.Point(68, 19);
             this.radioButtonIncremental.Name = "radioButtonIncremental";
             this.radioButtonIncremental.Size = new System.Drawing.Size(107, 17);
@@ -161,7 +169,8 @@
             // checkBoxInit
             // 
             this.checkBoxInit.AutoSize = true;
-            this.checkBoxInit.Location = new System.Drawing.Point(412, 16);
+            this.checkBoxInit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxInit.Location = new System.Drawing.Point(412, 20);
             this.checkBoxInit.Name = "checkBoxInit";
             this.checkBoxInit.Size = new System.Drawing.Size(52, 17);
             this.checkBoxInit.TabIndex = 4;
@@ -172,6 +181,7 @@
             // radioButtonDifferential
             // 
             this.radioButtonDifferential.AutoSize = true;
+            this.radioButtonDifferential.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonDifferential.Location = new System.Drawing.Point(181, 19);
             this.radioButtonDifferential.Name = "radioButtonDifferential";
             this.radioButtonDifferential.Size = new System.Drawing.Size(106, 17);
@@ -183,7 +193,7 @@
             // 
             // buttonRunFTPSync
             // 
-            this.buttonRunFTPSync.Location = new System.Drawing.Point(554, 190);
+            this.buttonRunFTPSync.Location = new System.Drawing.Point(556, 259);
             this.buttonRunFTPSync.Name = "buttonRunFTPSync";
             this.buttonRunFTPSync.Size = new System.Drawing.Size(476, 39);
             this.buttonRunFTPSync.TabIndex = 3;
@@ -193,22 +203,25 @@
             // 
             // textBoxLogs
             // 
-            this.textBoxLogs.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBoxLogs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxLogs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLogs.Location = new System.Drawing.Point(3, 235);
+            this.textBoxLogs.Location = new System.Drawing.Point(3, 16);
             this.textBoxLogs.Multiline = true;
             this.textBoxLogs.Name = "textBoxLogs";
             this.textBoxLogs.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLogs.Size = new System.Drawing.Size(1032, 444);
+            this.textBoxLogs.Size = new System.Drawing.Size(1026, 356);
             this.textBoxLogs.TabIndex = 0;
             // 
             // listBoxSettings
             // 
-            this.listBoxSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listBoxSettings.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxSettings.FormattingEnabled = true;
-            this.listBoxSettings.Location = new System.Drawing.Point(3, 3);
+            this.listBoxSettings.Location = new System.Drawing.Point(3, 16);
             this.listBoxSettings.Name = "listBoxSettings";
-            this.listBoxSettings.Size = new System.Drawing.Size(1032, 173);
+            this.listBoxSettings.Size = new System.Drawing.Size(1026, 223);
             this.listBoxSettings.TabIndex = 2;
             // 
             // tabControl
@@ -222,6 +235,30 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1046, 708);
             this.tabControl.TabIndex = 4;
+            // 
+            // groupBoxAppSettings
+            // 
+            this.groupBoxAppSettings.Controls.Add(this.listBoxSettings);
+            this.groupBoxAppSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxAppSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxAppSettings.Location = new System.Drawing.Point(3, 3);
+            this.groupBoxAppSettings.Name = "groupBoxAppSettings";
+            this.groupBoxAppSettings.Size = new System.Drawing.Size(1032, 242);
+            this.groupBoxAppSettings.TabIndex = 10;
+            this.groupBoxAppSettings.TabStop = false;
+            this.groupBoxAppSettings.Text = "AppSettings";
+            // 
+            // groupBoxLogs
+            // 
+            this.groupBoxLogs.Controls.Add(this.textBoxLogs);
+            this.groupBoxLogs.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBoxLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxLogs.Location = new System.Drawing.Point(3, 304);
+            this.groupBoxLogs.Name = "groupBoxLogs";
+            this.groupBoxLogs.Size = new System.Drawing.Size(1032, 375);
+            this.groupBoxLogs.TabIndex = 11;
+            this.groupBoxLogs.TabStop = false;
+            this.groupBoxLogs.Text = "Logs";
             // 
             // FormMain
             // 
@@ -237,10 +274,12 @@
             this.tabPageNewSeries.ResumeLayout(false);
             this.tabPageSeedboxIni.ResumeLayout(false);
             this.tabPageFTPSyncHelper.ResumeLayout(false);
-            this.tabPageFTPSyncHelper.PerformLayout();
             this.groupBoxFTPSyncOptions.ResumeLayout(false);
             this.groupBoxFTPSyncOptions.PerformLayout();
             this.tabControl.ResumeLayout(false);
+            this.groupBoxAppSettings.ResumeLayout(false);
+            this.groupBoxLogs.ResumeLayout(false);
+            this.groupBoxLogs.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -262,6 +301,8 @@
         private System.Windows.Forms.CheckBox checkBoxInit;
         private System.Windows.Forms.GroupBox groupBoxFTPSyncOptions;
         private System.Windows.Forms.CheckBox checkBoxQuiet;
+        private System.Windows.Forms.GroupBox groupBoxAppSettings;
+        private System.Windows.Forms.GroupBox groupBoxLogs;
     }
 }
 

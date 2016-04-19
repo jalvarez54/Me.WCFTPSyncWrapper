@@ -15,7 +15,7 @@ namespace Me.CFTPSyncWrapper
         // https://bluehouse.wordpress.com/2006/01/24/how-to-create-a-notify-icon-in-c-without-a-form/
         private static System.Windows.Forms.NotifyIcon _notifyIcon;
         private static Me.WCFTPSyncWrapper.IFTPSyncWrapper _ftpSyncWrapper;
-        private static Options options = new Options();
+        private static Options _options = new Options();
         const string _wFTPSyncWrapper = "WFTPSyncWrapper.exe";
 
         static void Main(string[] args)
@@ -32,7 +32,7 @@ namespace Me.CFTPSyncWrapper
                 // [10003-003]  ADD: in CFTPSyncWrapper and WFTPSyncWrapper same command line parameters than FTPSync
                 if (args.Length != 0)
                 {
-                    if (!CommandLine.Parser.Default.ParseArguments(args, options))
+                    if (!CommandLine.Parser.Default.ParseArguments(args, _options))
                     {
                         Program.EndApp(CommandLine.Parser.DefaultExitCodeFail);
 
@@ -40,13 +40,13 @@ namespace Me.CFTPSyncWrapper
                     else
                     {
                         // Values are available here
-                        Console.WriteLine("Version: {0}", options.Version);
+                        Console.WriteLine("Version: {0}", _options.Version);
                     }
                 }
                 else
                 {
                     // No parameters so FTPSyncWrapper will use app.settings parameters values
-                    options = null;
+                    _options = null;
                 }
             }
             catch (Exception ex)
@@ -57,8 +57,7 @@ namespace Me.CFTPSyncWrapper
 
             try
             {
-                // Using dependency injection
-                _ftpSyncWrapper = new Me.WCFTPSyncWrapper.Factory().GetWCFTPSyncWrapper(options);
+                _ftpSyncWrapper = new Me.WCFTPSyncWrapper.Factory().GetFTPSyncWrapper(_options);
             }
             catch (Exception ex)
             {
@@ -80,7 +79,7 @@ namespace Me.CFTPSyncWrapper
             if (args.Length > 0)
             {
 
-                if (options.FTPSync)
+                if (_options.FTPSync)
                 {
                     log.Debug("options.FTPSync");
                     try
@@ -104,7 +103,7 @@ namespace Me.CFTPSyncWrapper
 
                 }
 
-                if (options.Console)
+                if (_options.Console)
                 {
                     log.Debug("options.Console");
 
@@ -130,7 +129,7 @@ namespace Me.CFTPSyncWrapper
 
                 }
 
-                if (options.GUI)
+                if (_options.GUI)
                 {
                     log.Debug("options.GUI");
                     try
@@ -148,13 +147,13 @@ namespace Me.CFTPSyncWrapper
                     }
                 }
                 // we need one of the 3 options above
-                Program.DisplayInMessageBox(string.Format(Me.Common.Resources.Usage, options.GetUsage()));
+                Program.DisplayInMessageBox(string.Format(Me.Common.Resources.Usage, _options.GetUsage()));
                 Program.EndApp(0);
 
             }
             else
             {
-                // we use app.settings (without arguments) in console mode
+                // if no arguments we use app.settings in console mode
                 log.Debug("options.Console");
 
                 try

@@ -49,6 +49,12 @@ Sections model:
     *Compile the solution and then setup.iss*
 ============================================================================================================================
 
+##### [10008] Version 1.1.0.2.alpha
+ 
+    2016-04-19 Commit on GitHub. 
+
+##### [10007] Refactor
+
 ##### [10006] Version 1.1.0.1.alpha
  
     2016-04-18 Commit on GitHub. 

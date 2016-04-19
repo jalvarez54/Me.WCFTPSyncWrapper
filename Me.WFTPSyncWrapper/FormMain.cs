@@ -14,8 +14,7 @@ namespace Me.WFTPSyncWrapper
         //Here is the once-per-class call to initialize the log object
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private  Options _options = new Options();
-        private Me.WCFTPSyncWrapper.IFTPSyncWrapper _ftpSyncWrapper;
+        private  Options _options = new Options();        
 
         public FormMain()
         {
@@ -24,20 +23,6 @@ namespace Me.WFTPSyncWrapper
             // redirect console to textBoxLogs
             Console.SetOut(new TextBoxWriter(this.textBoxLogs));
             log.InfoFormat(Me.Common.Resources.Begin, "WinForm");
-
-            try
-            {
-                // _ftpSyncWrapper object to retreive settings and display them
-                // Using dependency injection
-                this._ftpSyncWrapper = new Me.WCFTPSyncWrapper.Factory().GetWCFTPSyncWrapper();
-                this.buttonRunFTPSync.Enabled = true;
-            }
-            catch (Exception ex)
-            {               
-                Me.Common.Utils.DisplayInMessageBox(ex.Message);
-                log.Debug(ex.Message);
-                Application.Exit();
-            }
 
             this.notifyIcon.Icon = Properties.Resources.favicon;
             this.notifyIcon.Text = Me.Common.Resources.Running;
@@ -51,13 +36,15 @@ namespace Me.WFTPSyncWrapper
         {
             FileStream fs = null;
 
+            // retreive app.settings from FTPSyncWrapper
+
             // [10003-003]  ADD: in CFTPSyncWrapper and WFTPSyncWrapper same command line parameters than FTPSync
             // FTPSync parameters retreive values from app.settings
-            this.checkBoxQuiet.Checked = this._options.Quiet = this._ftpSyncWrapper.Quiet;
-            this.radioButtonFull.Checked = this._options.Full = this._ftpSyncWrapper.Full;
-            this.radioButtonIncremental.Checked = this._options.Incremental = this._ftpSyncWrapper.Incremental;
-            this.radioButtonDifferential.Checked = this._options.Differential = this._ftpSyncWrapper.Differential;
-            this.checkBoxInit.Checked = this._options.Init = this._ftpSyncWrapper.Init;
+            this.checkBoxQuiet.Checked = this._options.Quiet = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["quiet"]);
+            this.radioButtonFull.Checked = this._options.Full = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["full"]);
+            this.radioButtonIncremental.Checked = this._options.Incremental = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["incremental"]);
+            this.radioButtonDifferential.Checked = this._options.Differential = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["differential"]);
+            this.checkBoxInit.Checked = this._options.Init = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["init"]);
 
             try
             {
@@ -65,16 +52,14 @@ namespace Me.WFTPSyncWrapper
 
                 // Display settings
                 List<string> settings = new List<string>();
-                settings.Add("/QUIET = " + this._ftpSyncWrapper.Quiet.ToString());
-                settings.Add("/FULL = " + this._ftpSyncWrapper.Full.ToString());
-                settings.Add("/INIT = " + this._ftpSyncWrapper.Init.ToString());
-                settings.Add("/DIFFERENTIAL = " + this._ftpSyncWrapper.Differential.ToString());
-                settings.Add("/INCREMENTAL = " + this._ftpSyncWrapper.Incremental.ToString());
-                settings.Add("SERIES PATH = " + this._ftpSyncWrapper.SeriesPath);
-                settings.Add("DOWNLOADS PATH = " + this._ftpSyncWrapper.DownloadsPath);
-                settings.Add("DOWNLOADED LIST PATH = " + this._ftpSyncWrapper.DownloadedListFileLog);
-                settings.Add("DUPLICATED PATH = " + this._ftpSyncWrapper.DuplicatedPath);
+
+                foreach (var item in System.Configuration.ConfigurationManager.AppSettings.AllKeys.ToArray())
+                {
+                    settings.Add(string.Format("{0} = {1}", item, System.Configuration.ConfigurationManager.AppSettings[item]));
+                }
+
                 listBoxSettings.DataSource = settings;
+
 
                 // Display seedbox.ini
                 IniFile seedboxIniFile = new IniFile();
@@ -93,17 +78,18 @@ namespace Me.WFTPSyncWrapper
                     this.listBoxSeedBoxIni.Items.Add(Environment.NewLine);
                 }
 
-                // Display DownloadedListFileLog.txt
-                if (File.Exists(this._ftpSyncWrapper.DownloadedListFileLog))
+
+                // Display DownloadedListFileLog.txt content
+                if (File.Exists(System.Configuration.ConfigurationManager.AppSettings["downloadedListFileLog"]))
                 {
-                    fs = File.OpenRead(this._ftpSyncWrapper.DownloadedListFileLog);
+                    fs = File.OpenRead(System.Configuration.ConfigurationManager.AppSettings["downloadedListFileLog"]);
 
                     richTextBoxNewSeries.LoadFile(fs, RichTextBoxStreamType.PlainText);
                     fs.Close();
                 }
                 else
                 {
-                    this.richTextBoxNewSeries.Text = string.Format( Me.Common.Resources.FileNotFound, this._ftpSyncWrapper.DownloadedListFileLog);
+                    this.richTextBoxNewSeries.Text = string.Format( Me.Common.Resources.FileNotFound, System.Configuration.ConfigurationManager.AppSettings["downloadedListFileLog"]);
                 }
 
             }
@@ -149,11 +135,11 @@ namespace Me.WFTPSyncWrapper
             this._options.Init = this.checkBoxInit.Checked;
 
             // [10003-003]  ADD: in CFTPSyncWrapper and WFTPSyncWrapper same command line parameters than FTPSync
-            // New this._ftpSyncWrapper object to pass new options defined in the GUI
+            Me.WCFTPSyncWrapper.IFTPSyncWrapper ftpSyncWrapper = null;
+
             try
             {
-                // Using dependency injection
-                this._ftpSyncWrapper = new Me.WCFTPSyncWrapper.Factory().GetWCFTPSyncWrapper(_options);
+                ftpSyncWrapper = new Me.WCFTPSyncWrapper.Factory().GetFTPSyncWrapper(_options);
                 this.buttonRunFTPSync.Enabled = true;
             }
             catch (Exception ex)
@@ -165,7 +151,7 @@ namespace Me.WFTPSyncWrapper
 
             try
             {
-                this._ftpSyncWrapper.FTPSyncHelperWorkFlow();
+                ftpSyncWrapper.FTPSyncHelperWorkFlow();
                 this.buttonRunFTPSync.Enabled = true;
 
                 log.Info(Me.Common.Resources.Success);

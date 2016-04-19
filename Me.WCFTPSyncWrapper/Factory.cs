@@ -8,7 +8,7 @@ namespace Me.WCFTPSyncWrapper
 {
     public class Factory
     {
-        public IFTPSyncWrapper GetWCFTPSyncWrapper(object options = null)
+        public IFTPSyncWrapper GetFTPSyncWrapper(object options)
         {
             return new WCFTPSyncWrapper.FTPSyncWrapper(options);
         }

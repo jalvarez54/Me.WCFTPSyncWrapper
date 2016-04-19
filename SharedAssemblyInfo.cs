@@ -20,4 +20,4 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyInformationalVersion("1.1.0.1.alpha")]
+[assembly: AssemblyInformationalVersion("1.1.0.2.alpha")]

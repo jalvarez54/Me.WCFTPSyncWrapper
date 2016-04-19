@@ -18,10 +18,10 @@ namespace Me.WCFTPSyncWrapper
         private Options _options; // = new Options();
 
         /// <summary>
-        /// [10003-002]  ADD: object options = null parmeter in FTPSyncWrapper() constrcutor
+        /// [10003-002]  ADD: object options parmeter in FTPSyncWrapper() constructor
         /// </summary>
         /// <param name="options"></param>
-        public FTPSyncWrapper(object options = null)
+        public FTPSyncWrapper(object options)
         {
             try
             {
